@@ -1,0 +1,7 @@
+{{ $import := resources.Get "css/import.css" | fingerprint }}
+{{ $color := resources.Get "css/color.css" | fingerprint }}
+{{ $typo := resources.Get "css/typo.css" | fingerprint }}
+{{ $space := resources.Get "css/space.css" | fingerprint }}
+{{ $main := resources.Get "css/main.css" | fingerprint }}
+{{ $styles := slice $import $color $typo $space  $main | resources.Concat "styles.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}"></link>
